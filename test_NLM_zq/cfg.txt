@@ -1,0 +1,14 @@
+#input original file
+\\10.13.74.221\FinalCfPVersionSequence\E\Johnny_1280x720_60.yuv
+#input reconstruction file
+\\10.13.74.221\hmÎ´ÂË²¨\E\AI\rec\intra_main_Johnny_27.yuv
+#filtered file
+./Filtered/filtered_Johnny_37.yuv
+#WIDTH
+1280
+#HEIGHT
+720
+#FRAME NUMER
+50
+#NOISE_SIGMA or H
+1
