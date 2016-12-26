@@ -110,12 +110,7 @@ void Non_Local_Means(uchar* Src, uchar* Dest, int width, int height, int templat
 					for(int n = templateWindowSize; n--;)
 					{
 						for(int m = templateWindowSize; m--;)
-						{
-// 							if( n != (templateWindowSize + 1) / 2 || m != (templateWindowSize + 1) / 2){
-// 								e += (*s - *t) * (*s - *t);
-// 						}else{
-// 							e += 0.5 * (*s - *t) * (*s - *t);
-// 						}
+						{					
 							e += (*s - *t) * (*s - *t);
 							s ++;
 							t ++;
@@ -128,22 +123,6 @@ void Non_Local_Means(uchar* Src, uchar* Dest, int width, int height, int templat
 					count--;
 					ww[count] = ediv;
 					tweight += w[ediv];// Z(i)
-// 					if( optimal.size() < NumPatch){
-// 						optimal.insert(pair<double, int>(ediv, count));
-// 					}else{
-// 						map<double, int>::iterator it = optimal.end();
-// 						it--;
-// 						if((*it).first > ww[count]){
-// 							int index = (*it).second;
-// 							ww[index] = 256 * 256 - 1;
-// 							tweight -= (*it).first;
-// 							optimal.erase(it);
-// 							optimal.insert(pair<double, int>(ediv, count));
-// 						}else{
-// 							ww[count] = 256 * 256 - 1;
-// 							tweight -= w[ediv];
-// 						}
-// 					}
 				}
 			}
 			optimal.clear();
@@ -382,9 +361,6 @@ int main(int argc, char* argv[])
 		cout<<"Y:"<<PSNR_before[0]<<"\t"<<"Cb:"<<PSNR_before[1]<<"\t"<<"Cr:"<<PSNR_before[2]<<"\t"<<endl;
 
 		//Non-Local-Means algorithm
-		/*Non_Local_Means(RecY, Filtered_Y_buffer, WIDTH, HEIGHT, 5, 11, noise_sigma, noise_sigma);
-		Non_Local_Means(RecCb, Filtered_Cb_buffer, WIDTH/2, HEIGHT/2, 3, 9, noise_sigma, noise_sigma);
-		Non_Local_Means(RecCr, Filtered_Cr_buffer, WIDTH/2, HEIGHT/2, 3, 9, noise_sigma, noise_sigma);*/
 		Non_Local_Means(RecY, Filtered_Y_buffer, WIDTH, HEIGHT, TemplateWindowSize, SearchWindowSize, noise_sigma, noise_sigma);
 		Non_Local_Means(RecCb, Filtered_Cb_buffer, WIDTH/2, HEIGHT/2, TemplateWindowSize/2, SearchWindowSize, noise_sigma, noise_sigma);
 		Non_Local_Means(RecCr, Filtered_Cr_buffer, WIDTH/2, HEIGHT/2, TemplateWindowSize/2, SearchWindowSize, noise_sigma, noise_sigma);
